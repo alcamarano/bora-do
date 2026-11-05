@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-    🔗Acesse o projeto: <a href="">clique aqui</a>
+    🔗Acesse o projeto: <a href="https://alcamarano.github.io/bora-do/">clique aqui</a>
 </p>
  
 ## 📌 Funcionalidades
