@@ -8,7 +8,12 @@ const taskList = document.getElementById('taskList');
 year.textContent = new Date().getFullYear();
 
 // Guarda as tarefas
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem('boraDoTasks')) || [];
+
+// Salva as tarefas no navegador
+function saveTasks() {
+    localStorage.setItem('boraDoTasks', JSON.stringify(tasks));
+}
 
 // Mostra as tarefas na tela
 function renderTasks() {
@@ -37,6 +42,7 @@ function renderTasks() {
         checkbox.checked = task.completed;
         checkbox.addEventListener('change', () => {
             task.completed = checkbox.checked;
+            saveTasks();
         });
         const editButton = item.querySelector('.task__action--edit');
         editButton.setAttribute('aria-label', `Editar: ${task.title}`);
@@ -50,6 +56,7 @@ function renderTasks() {
                 return;
             }
             task.title = title;
+            saveTasks();
             renderTasks();
         });
         const deleteButton = item.querySelector('.task__action--delete');
@@ -58,6 +65,7 @@ function renderTasks() {
 
         deleteButton.addEventListener('click', () => {
             tasks = tasks.filter((currentTask) => currentTask.id !== task.id);
+            saveTasks();
             renderTasks();
         });
         taskList.appendChild(item);
@@ -83,8 +91,11 @@ taskForm.addEventListener('submit', (event) => {
     };
 
     tasks.push(newTask);
+    saveTasks();
     renderTasks();
 
     taskForm.reset();
     taskInput.focus();
 });
+
+renderTasks();
