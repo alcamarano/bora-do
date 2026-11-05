@@ -129,6 +129,10 @@ button {
     color: var(--color-surface);
 }
 
+.task-form__button-text {
+    display: none;
+}
+
 .div__filters {
     display: flex;
     gap: 5px;
@@ -228,4 +232,16 @@ button {
     font-size: .8rem;
     font-weight: 400;
     text-align: center;
+}
+
+@media (min-width: 500px) {
+    .form__tasks button {
+        width: auto;
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    .task-form__button-text {
+        display: inline;
+    }
 }
