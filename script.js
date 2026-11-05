@@ -38,7 +38,26 @@ function renderTasks() {
         checkbox.addEventListener('change', () => {
             task.completed = checkbox.checked;
         });
-        item.querySelector('.task__action--edit').setAttribute('aria-label', `Editar: ${task.title}`);
+        const editButton = item.querySelector('.task__action--edit');
+        editButton.setAttribute('aria-label', `Editar: ${task.title}`);
+        editButton.addEventListener('click', () => {
+            const newTitle = prompt('Editar tarefa:', task.title);
+            if (newTitle === null) {
+                return;
+            }
+            const title = newTitle.trim();
+            if (title === '') {
+                return;
+            }
+            task.title = title;
+            renderTasks();
+        });
+
+
+
+
+
+
         item.querySelector('.task__action--delete').setAttribute('aria-label', `Excluir: ${task.title}`);
         taskList.appendChild(item);
     });
