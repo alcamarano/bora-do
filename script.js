@@ -33,6 +33,11 @@ function renderTasks() {
         `;
 
         item.querySelector('.task__title').textContent = task.title;
+        const checkbox = item.querySelector('.task__checkbox');
+        checkbox.checked = task.completed;
+        checkbox.addEventListener('change', () => {
+            task.completed = checkbox.checked;
+        });
         item.querySelector('.task__action--edit').setAttribute('aria-label', `Editar: ${task.title}`);
         item.querySelector('.task__action--delete').setAttribute('aria-label', `Excluir: ${task.title}`);
         taskList.appendChild(item);
