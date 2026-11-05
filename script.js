@@ -3,6 +3,7 @@ const year = document.getElementById('year');
 const taskForm = document.getElementById('taskForm');
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
+const filterButtons = document.querySelectorAll('.filters__button');
 
 // Pegar e enviar ao HTML o ano atual
 year.textContent = new Date().getFullYear();
@@ -10,16 +11,32 @@ year.textContent = new Date().getFullYear();
 // Guarda as tarefas
 let tasks = JSON.parse(localStorage.getItem('boraDoTasks')) || [];
 
+// Guarda o filtro selecionado
+let currentFilter = 'all';
+
 // Salva as tarefas no navegador
 function saveTasks() {
     localStorage.setItem('boraDoTasks', JSON.stringify(tasks));
+}
+
+// Devolve as tarefas do filtro selecionado
+function getFilteredTasks() {
+    if (currentFilter === 'pending') {
+        return tasks.filter((task) => !task.completed);
+    }
+
+    if (currentFilter === 'completed') {
+        return tasks.filter((task) => task.completed);
+    }
+
+    return tasks;
 }
 
 // Mostra as tarefas na tela
 function renderTasks() {
     taskList.innerHTML = '';
 
-    tasks.forEach((task) => {
+    getFilteredTasks().forEach((task) => {
         const item = document.createElement('li');
         item.className = 'task';
         item.innerHTML = `
@@ -43,6 +60,7 @@ function renderTasks() {
         checkbox.addEventListener('change', () => {
             task.completed = checkbox.checked;
             saveTasks();
+            renderTasks();
         });
         const editButton = item.querySelector('.task__action--edit');
         editButton.setAttribute('aria-label', `Editar: ${task.title}`);
@@ -96,6 +114,22 @@ taskForm.addEventListener('submit', (event) => {
 
     taskForm.reset();
     taskInput.focus();
+});
+
+// Troca o filtro ao clicar em um botão
+filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentFilter = button.dataset.filter;
+
+        filterButtons.forEach((filterButton) => {
+            const isActive = filterButton === button;
+
+            filterButton.classList.toggle('filters__button--active', isActive);
+            filterButton.setAttribute('aria-pressed', isActive);
+        });
+
+        renderTasks();
+    });
 });
 
 renderTasks();
