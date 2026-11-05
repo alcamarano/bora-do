@@ -1,67 +1,65 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <title>Bora.do</title>
     </head>
     <body>
-        <header>
-            <div>
-                <h1>
-                    <img src="" alt=""> Bora.do
-                </h1>
-                <p>
-                    <span></span> de <span></span> feitas
+        <header class="header">
+            <div class="header__top">
+                <a href="index.html" class="header__logo">
+                    <img src="image/icon.png" alt="" width="32" height="32"> Bora.do
+                </a>
+                <p class="header__progress">
+                    <span id="completedTasks">x</span> de 
+                    <span id="numberTasks">y</span> feitas
                 </p>
             </div>
-            <h2>
-                Bora, faltam <span></span> tarefas.
-            </h2>
+            <h1>
+                Bora, <span id="pendingMessage">faltam z tarefas</span>.
+            </h1>
         </header>
-        <main>
-            <section>
-                <div>
-                    <h3>Nova tarefa</h3>
+        <main class="main">
+            <section class="main__section">
+                <form class="form__tasks">
+                    <label for="inpTask">Nova tarefa</label>
                     <div>
-                        <input type="text" placeholder="O que vamos fazer?">
-                        <button type="button">
-                            <img src="" alt="">
+                        <input type="text" id="inpTask" name="inpTask" placeholder="O que vamos fazer?" autocomplete="off" required>
+                        <button type="submit" aria-label="Adicionar tarefa">
+                            <img src="image/add.png" alt="" width="24" height="24">
                         </button>
                     </div>
+                </form>
+                <div class="div__filters">
+                    <button type="button" class="filters__button filters__button--active" aria-pressed="true">Todas</button>
+                    <button type="button" class="filters__button" aria-pressed="false">Pendentes</button>
+                    <button type="button" class="filters__button" aria-pressed="false">Concluídas</button>
                 </div>
-                <div>
-                    <button>
-                        Todas <span></span>
-                    </button>
-                    <button>
-                        Pendentes <span></span>
-                    </button>
-                    <button>
-                        Concluídas <span></span>
-                    </button>
-                </div>
-                <ul>
-                    <div></div>
-                    <li>
-                        <input type="checkbox" name="" id="">
-                        <h4></h4>
-                        <div>
-                            <button>
-                                <img src="" alt="">
+                <ul class="task__list">
+                    <li class="task">
+                        <label class="task__label">
+                            <input type="checkbox" class="task__checkbox">
+                            <span class="task__title">Finalizar o README</span>
+                        </label>
+                        <div class="task__buttons">
+                            <button class="task__action" type="button" aria-label="Editar: ">
+                                <img src="image/edit.png" alt="" width="16" height="16">
                             </button>
-                            <button>
-                                <img src="" alt="">
+                            <button class="task__action" type="button" aria-label="Excluir: ">
+                                <img src="image/delete.png" alt="" width="16" height="16">
                             </button>
                         </div>
                     </li>
-                    <div></div>
                 </ul>
             </section>
         </main>
-        <footer>
-            <p>&copy; <span></span> Bora.do. Todos os direitos reservados.</p>
+        <footer class="footer">
+            <p>&copy; <span id="year"></span> Bora.do. Todos os direitos reservados.</p>
         </footer>
         <script src="script.js"></script>
     </body>
