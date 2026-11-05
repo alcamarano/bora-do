@@ -4,6 +4,9 @@ const taskForm = document.getElementById('taskForm');
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 const filterButtons = document.querySelectorAll('.filters__button');
+const completedTasks = document.getElementById('completedTasks');
+const numberTasks = document.getElementById('numberTasks');
+const pendingMessage = document.getElementById('pendingMessage');
 
 // Pegar e enviar ao HTML o ano atual
 year.textContent = new Date().getFullYear();
@@ -32,8 +35,29 @@ function getFilteredTasks() {
     return tasks;
 }
 
+// Atualiza os contadores e a frase do topo
+function updateCounters() {
+    const total = tasks.length;
+    const pending = tasks.filter((task) => !task.completed).length;
+    const completed = total - pending;
+
+    completedTasks.textContent = completed;
+    numberTasks.textContent = total;
+
+    if (total === 0) {
+        pendingMessage.textContent = 'adicione uma tarefa';
+    } else if (pending === 0) {
+        pendingMessage.textContent = 'tudo feito';
+    } else if (pending === 1) {
+        pendingMessage.textContent = 'falta 1 tarefa';
+    } else {
+        pendingMessage.textContent = `faltam ${pending} tarefas`;
+    }
+}
+
 // Mostra as tarefas na tela
 function renderTasks() {
+    updateCounters();
     taskList.innerHTML = '';
 
     getFilteredTasks().forEach((task) => {
