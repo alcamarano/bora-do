@@ -52,13 +52,14 @@ function renderTasks() {
             task.title = title;
             renderTasks();
         });
+        const deleteButton = item.querySelector('.task__action--delete');
 
+        deleteButton.setAttribute('aria-label', `Excluir: ${task.title}`);
 
-
-
-
-
-        item.querySelector('.task__action--delete').setAttribute('aria-label', `Excluir: ${task.title}`);
+        deleteButton.addEventListener('click', () => {
+            tasks = tasks.filter((currentTask) => currentTask.id !== task.id);
+            renderTasks();
+        });
         taskList.appendChild(item);
     });
 }
