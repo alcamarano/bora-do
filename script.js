@@ -1,4 +1,3 @@
-// Pegar os elementos do HTML
 const year = document.getElementById('year');
 const taskForm = document.getElementById('taskForm');
 const taskInput = document.getElementById('taskInput');
@@ -8,21 +7,16 @@ const completedTasks = document.getElementById('completedTasks');
 const numberTasks = document.getElementById('numberTasks');
 const pendingMessage = document.getElementById('pendingMessage');
 
-// Pegar e enviar ao HTML o ano atual
 year.textContent = new Date().getFullYear();
 
-// Guarda as tarefas
 let tasks = JSON.parse(localStorage.getItem('boraDoTasks')) || [];
 
-// Guarda o filtro selecionado
 let currentFilter = 'all';
 
-// Salva as tarefas no navegador
 function saveTasks() {
     localStorage.setItem('boraDoTasks', JSON.stringify(tasks));
 }
 
-// Devolve as tarefas do filtro selecionado
 function getFilteredTasks() {
     if (currentFilter === 'pending') {
         return tasks.filter((task) => !task.completed);
@@ -35,7 +29,6 @@ function getFilteredTasks() {
     return tasks;
 }
 
-// Atualiza os contadores e a frase do topo
 function updateCounters() {
     const total = tasks.length;
     const pending = tasks.filter((task) => !task.completed).length;
@@ -55,11 +48,9 @@ function updateCounters() {
     }
 }
 
-// Mostra as tarefas na tela
 function renderTasks() {
     updateCounters();
     taskList.innerHTML = '';
-
     getFilteredTasks().forEach((task) => {
         const item = document.createElement('li');
         item.className = 'task';
@@ -113,34 +104,25 @@ function renderTasks() {
         taskList.appendChild(item);
     });
 }
-
-// Executa quando o formulário é enviado
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
     const title = taskInput.value.trim();
-
     if (title === '') {
         taskForm.reset();
         taskInput.focus();
         return;
     }
-
     const newTask = {
         id: Date.now(),
         title: title,
         completed: false
     };
-
     tasks.push(newTask);
     saveTasks();
     renderTasks();
-
     taskForm.reset();
     taskInput.focus();
 });
-
-// Troca o filtro ao clicar em um botão
 filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
         currentFilter = button.dataset.filter;
@@ -155,5 +137,4 @@ filterButtons.forEach((button) => {
         renderTasks();
     });
 });
-
 renderTasks();
