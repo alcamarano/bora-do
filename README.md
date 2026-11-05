@@ -46,8 +46,8 @@
  
 Feito por **Augusto Lima Camarano**.
  
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu nome](https://linkedin.com/in/seu-usuario)
+- GitHub: [@alcamarano](https://github.com/alcamarano)
+- LinkedIn: [Augusto Lima Camarano](https://www.linkedin.com/in/alcamarano/)
 
 <br>
 <p align="center">
