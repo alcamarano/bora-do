@@ -43,9 +43,17 @@ function renderTasks() {
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    const title = taskInput.value.trim();
+
+    if (title === '') {
+        taskForm.reset();
+        taskInput.focus();
+        return;
+    }
+
     const newTask = {
         id: Date.now(),
-        title: taskInput.value,
+        title: title,
         completed: false
     };
 
