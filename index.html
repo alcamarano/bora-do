@@ -26,10 +26,10 @@
         </header>
         <main class="main">
             <section class="main__section">
-                <form class="form__tasks">
+                <form class="form__tasks" id="taskForm">
                     <label for="inpTask">Nova tarefa</label>
                     <div>
-                        <input type="text" id="inpTask" name="inpTask" placeholder="O que vamos fazer?" autocomplete="off" required>
+                        <input type="text" id="taskInput" name="inpTask" placeholder="O que vamos fazer?" autocomplete="off" required>
                         <button type="submit" aria-label="Adicionar tarefa">
                             <img src="image/add.png" alt="" width="24" height="24"><span class="task-form__button-text">Adicionar</span>
                         </button>
@@ -40,20 +40,9 @@
                     <button type="button" class="filters__button" aria-pressed="false">Pendentes</button>
                     <button type="button" class="filters__button" aria-pressed="false">Concluídas</button>
                 </div>
-                <ul class="task__list">
+                <ul class="task__list" id="taskList">
                     <li class="task">
-                        <label class="task__label">
-                            <input type="checkbox" class="task__checkbox">
-                            <span class="task__title">Finalizar o README</span>
-                        </label>
-                        <div class="task__buttons">
-                            <button class="task__action" type="button" aria-label="Editar: ">
-                                <img src="image/edit.png" alt="" width="16" height="16">
-                            </button>
-                            <button class="task__action" type="button" aria-label="Excluir: ">
-                                <img src="image/delete.png" alt="" width="16" height="16">
-                            </button>
-                        </div>
+                        
                     </li>
                 </ul>
             </section>
